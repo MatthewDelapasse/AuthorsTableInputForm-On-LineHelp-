@@ -30,6 +30,9 @@ namespace AuthorsTableInputForm_On_LineHelp_
         {
             try
             {
+                //point to help file
+                hlpAuthors.HelpNamespace = Application.StartupPath + "\\authors.chm";
+
                 //connect to the books database (this will lead to successful connection)
                 string fullfile = Path.GetFullPath("SQLBooksDB.mdf");
 
@@ -156,6 +159,16 @@ namespace AuthorsTableInputForm_On_LineHelp_
             }
         }
 
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, hlpAuthors.HelpNamespace);
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void txtYearBorn_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar >= '0' && e.KeyChar <= '9') || (int)e.KeyChar == 8)
@@ -252,6 +265,5 @@ namespace AuthorsTableInputForm_On_LineHelp_
             }
             return (allOK);
         }
-
     }
 }
